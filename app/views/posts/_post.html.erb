@@ -1,0 +1,8 @@
+<li id="<%= dom_id post %>" class='px-6 py-4 flex flex-row justify-between'>
+  <span class='font-bold'>
+    <%= post.title %>
+  </span>
+  <%= link_to post, class: "btn btn-primary #{'hidden' if params[:action] == 'show'}" do %>
+    <%= heroicon "eye", options: { class: 'h-5 w-5'} %>
+  <% end %>
+</li>

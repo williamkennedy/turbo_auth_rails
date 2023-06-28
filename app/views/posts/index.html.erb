@@ -1,0 +1,33 @@
+<p style="color: green"><%= notice %></p>
+
+
+<div class="mt-8 px-4 flex items-center justify-between">
+  <div class="min-w-0 flex-1">
+    <h1 class='h1'>Posts</h1>
+  </div>
+  <div class='mt-4 flex ml-4 mt-0'>
+    <%= link_to "/native", class: 'ml-2 btn btn-primary' do %>
+      <%= heroicon 'phone', options: {class: 'w-5 h-5'} %>
+    <% end %>
+    <%= link_to new_post_path, class: 'ml-2 btn btn-primary' do %>
+      <%= heroicon 'arrow-down-on-square', options: {class: 'w-5 h-5'} %>
+    <% end %>
+    <%= link_to profile_path, class: 'ml-2 btn btn-primary' do %>
+      <%= heroicon 'user-circle', options: {class: 'w-5 h-5'} %>
+    <% end %>
+  </div>
+</div>
+
+<div class='overflow-hidden rounded-md bg-white shadow mt-4'>
+
+  <ul class='divide-y divide-gray-200' id="contacts">
+    <div id="posts">
+      <% @posts.each do |post| %>
+        <%= render post %>
+        <p>
+        <%= link_to "Show this post", post %>
+        </p>
+      <% end %>
+    </div>
+  </ul>
+</div
