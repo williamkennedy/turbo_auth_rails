@@ -16,6 +16,13 @@
         <li><%= link_to 'Home', root_path, class: 'hover:text-blue-500' %></li>
         <li><%= link_to "Posts", posts_path, class: 'hover:text-blue-500' %></li>
       </ul>
+      <ul class='flex px-4 mx-auto font-semibold font-heading'>
+        <% if user_signed_in? %>
+        <li><%= button_to 'Sign Out', session_path(Current.session), method: :delete, class: 'px-1 hover:text-blue-500' %></li>
+      <% else %>
+        <li><%= link_to 'Sign In', sign_in_path, class: 'hover:text-blue-500' %></li>
+      <% end %>
+      </ul>
     </nav>
     <main class='bg-slate-200 h-screen'>
       <%= yield %>

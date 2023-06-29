@@ -23,6 +23,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def user_signed_in?
+    authenticate_with_cookies || authenticate_with_token
+  end
+
+  helper_method :user_signed_in?
+  
+
   def request_api_authentication
     request_http_token_authentication if request.format.json?
   end
