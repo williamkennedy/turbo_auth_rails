@@ -1,12 +1,9 @@
 class ApplicationController < ActionController::Base
-  include ActionController::HttpAuthentication::Token::ControllerMethods
   before_action :set_current_request_details
   before_action :authenticate
 
-  private
 
   def authenticate
-    puts "JSON #{request.format.json?}"
     if authenticate_with_token || authenticate_with_cookies
       # Great! You're in
     elsif !performed?
@@ -15,12 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_with_token
-    puts "HEADERS: #{request.headers.inspect}"
-    if session = authenticate_with_http_token  do |token, _|
-      puts token
-      puts _
-      Session.find_signed(token)
-    end
+    if session = authenticate_with_http_token { |token, _| Session.find_signed(token) }
       Current.session = session
     end
   end
@@ -32,12 +24,12 @@ class ApplicationController < ActionController::Base
   end
 
   def request_api_authentication
-    puts request.format.json?
     request_http_token_authentication if request.format.json?
   end
 
   def request_cookie_authentication
-    redirect_to sign_in_path, status: :unauthorized
+    session[:return_path] = request.fullpath
+    render 'sessions/new', status: :unauthorized, notice: "You need to sign in"
   end
 
   def set_current_request_details

@@ -1,10 +1,15 @@
-<h1>Editing post</h1>
+<div class="mt-8 px-4 flex items-center justify-between">
+  <div class="min-w-0 flex-1 text-center">
+    <h1 class='text-lg font-bold'>Editing Post</h1>
+  </div>
+</div>
 
+<div class='p-4 mt-2 flex flex-row justify-center rounded-md bg-white'>
 <%= render "form", post: @post %>
+</div>
 
-<br>
 
-<div>
+<nav>
   <%= link_to "Show this post", @post %> |
   <%= link_to "Back to posts", posts_path %>
-</div>
+</nav>

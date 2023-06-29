@@ -6,13 +6,19 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", 'actiontext', "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
-    <div class="container mx-auto sm:p-6 lg:px-8 lg:py-8">
+    <nav class='flex justify-between bg-gray-900 text-white w-screen'>
+      <ul class='flex px-4 mx-auto font-semibold font-heading space-x-12'>
+        <li><%= link_to 'Home', root_path, class: 'hover:text-blue-500' %></li>
+        <li><%= link_to "Posts", posts_path, class: 'hover:text-blue-500' %></li>
+      </ul>
+    </nav>
+    <main class='bg-slate-200 h-screen'>
       <%= yield %>
-    </div>
+    </main>
   </body>
 </html>

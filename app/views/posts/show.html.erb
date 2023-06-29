@@ -1,10 +1,26 @@
+
 <p style="color: green"><%= notice %></p>
+
+
+<div class="mt-8 px-4 flex items-center justify-between">
+  <div class="min-w-0 flex-1 text-center">
+    <h1 class='text-lg font-bold'> <%= @post.title %></h1>
+  </div>
+</div>
 
 <%= render @post %>
 
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
+<nav class='flex px-4' aria-label='<%= @post.title %> actions'>
+  <ul class='flex'>
+    <li>
+      <%= link_to "Edit this post", edit_post_path(@post), class: "px-1 hover:text-blue-500" %> |  
+    </li>
+    <li>
+      <%= link_to "Back to posts", posts_path, class: "px-1 hover:text-blue-500" %> | 
+    </li>
 
-  <%= button_to "Destroy this post", @post, method: :delete %>
-</div>
+    <li>
+      <%= button_to "Destroy this post", @post, method: :delete, class: "px-1 hover:text-blue-500" %> 
+    </li>
+  </ul>
+</nav>
