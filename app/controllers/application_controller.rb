@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :set_current_request_details
   before_action :authenticate
+  helper_method :user_signed_in?
 
 
   def authenticate
@@ -26,10 +27,7 @@ class ApplicationController < ActionController::Base
   def user_signed_in?
     authenticate_with_cookies || authenticate_with_token
   end
-
-  helper_method :user_signed_in?
   
-
   def request_api_authentication
     request_http_token_authentication if request.format.json?
   end

@@ -30,4 +30,10 @@ Rails.application.routes.draw do
       resources :sessions, only: [:index, :create, :show, :destroy] 
     end
   end
+
+  namespace :turbo do
+    namespace :ios do
+      resource :path_configuration, only: [:show]
+    end
+  end
 end
